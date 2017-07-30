@@ -1,0 +1,8 @@
+{
+  "body": "{\"name\":\"bruno alves cau\", \"bankAccount\":{\"name\": \"BB\" ,\"number\": \"12345\",\"agency\": \"1234566\"}}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "4adf0a19-96db-44de-b7b3-c1d967fa1c47"
+    }
+  }
+} 

@@ -1,0 +1,92 @@
+service: planilha-reembolso-app-api
+
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpackIncludeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: prod
+  region: us-east-2
+
+  # 'iamRoleStatement' defines the permission policy for the Lambda function.
+  # In this case Lambda functions are granted with permissions to access DynamoDB.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-2:*:*"
+
+functions:
+  expenseCreate:
+    handler: expense.create
+    events:
+      - http:
+          path: api/expense
+          method: post
+          cors: true
+          authorizer: aws_iam
+
+  expenseGet:
+    handler: expense.findOne
+    events:
+      - http:
+          path: api/expense/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+          
+  expenseList:
+    handler: expense.list
+    events:
+      - http:
+          path: api/expense
+          method: get
+          cors: true
+          authorizer: aws_iam
+  
+  expenseDelete:
+    handler: expense.del
+    events:
+      - http:
+          path: api/expense/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  
+  expenseUpdate:
+    handler: expense.update
+    events:
+      - http:
+          path: api/expense/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  
+  userCustomCreate:
+    handler: user.create
+    events: 
+      - http:
+          path: api/user
+          method: post
+          cros: true
+          authorizer: aws_iam
+  
+  userCustomUpdate:
+    handler: user.update
+    events: 
+      - http:
+          path: api/user
+          method: put
+          cros: true
+          authorizer: aws_iam

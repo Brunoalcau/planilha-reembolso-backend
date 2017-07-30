@@ -1,0 +1,8 @@
+{
+  "body": "{\"data\":\"2017-07-01\",\"typeExpense\":1,\"statusExpense\":1  ,\"additionalInfo\":\"hello world\",\"description\":\"hello world\",\"attachment\":\"hello.jpg\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "4adf0a19-96db-44de-b7b3-c1d967fa1c47"
+    }
+  }
+}
